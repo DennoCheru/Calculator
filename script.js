@@ -107,3 +107,23 @@ function backspace() {
     displayContent = displayContent.slice(0, -1);
     updateDisplay()
 }
+
+document.addEventListener('keydown', function(e) {
+    const key = e.key;
+
+    if(key === "Backspace") {
+        backspace();
+    } else if (key === "Escape") {
+        clearDisplay()
+    } else if (['+', '-', '*', '/'].includes(key)) {
+        handleOperator();
+    }  else if (key === "Enter") {
+        calculateResult()
+    } else if (key === ".") {
+        if (!displayContent.includes('.')) {
+            addDigit(key);
+        }
+    }else if (!isNaN(key)) {
+        addDigit(key);
+    }
+})
